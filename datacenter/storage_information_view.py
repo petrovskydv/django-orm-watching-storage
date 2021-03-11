@@ -19,10 +19,3 @@ def storage_information_view(request):
         'non_closed_visits': non_closed_visits,  # не закрытые посещения
     }
     return render(request, 'storage_information.html', context)
-
-
-def format_duration(total_seconds):
-    hours = int(total_seconds // 3600)
-    minutes = int((total_seconds % 3600) // 60)
-    seconds = int(total_seconds) - hours * 3600 - minutes * 60
-    return f'{hours:d}:{minutes:02d}:{seconds:02d}'
