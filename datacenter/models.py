@@ -1,3 +1,4 @@
+import django
 from django.db import models
 
 
@@ -23,5 +24,9 @@ class Visit(models.Model):
         return "{user} entered at {entered} {leaved}".format(
             user=self.passcard.owner_name,
             entered=self.entered_at,
-            leaved= "leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
+            leaved="leaved at " + str(self.leaved_at) if self.leaved_at else "not leaved"
         )
+
+    def get_duration(self):
+        delta = django.utils.timezone.localtime() - self.entered_at
+        return delta.total_seconds()
