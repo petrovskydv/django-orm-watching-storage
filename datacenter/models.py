@@ -28,10 +28,10 @@ class Visit(models.Model):
         )
 
     def get_duration(self):
-        if self.leaved_at == None:
-            leaved_at = django.utils.timezone.localtime()
-        else:
+        if self.leaved_at:
             leaved_at = self.leaved_at
+        else:
+            leaved_at = django.utils.timezone.localtime()
 
         delta = leaved_at - self.entered_at
         return delta.total_seconds()
