@@ -37,9 +37,7 @@ class Visit(models.Model):
         return delta.total_seconds()
 
     def is_visit_long(self, minutes=60):
-        if self.get_duration() > minutes * 60:
-            return True
-        return False
+        return self.get_duration() > minutes * 60
 
     def format_duration(self, total_seconds):
         hours = int(total_seconds // 3600)
